@@ -133,12 +133,10 @@ if __name__ == "__main__":
     # pdf_path = r"C:\Users\umroot\Downloads\DSIP\MA Committee Report -Ornela_Bregu_26898580.pdf"
     # output_excel = r"C:\Users\umroot\Downloads\DSIP\ExtractPdfData.xlsm"
     # template_path = r"C:\Users\umroot\Downloads\DSIP\Template.xlsm"
-    pdf_path = r"C:\Users\umroot\PycharmProjects\DSIP\MA Committee Report -Ornela_Bregu_26898580.pdf"
-    pdf_path1 = r"C:\Users\umroot\PycharmProjects\DSIP\MA Committee Report - Youssef Maghrebi_40259660.pdf"
-    pdf_path2 = r"C:\Users\umroot\PycharmProjects\DSIP\phd-committee-formOmar40187210.pdf"
+    pdf_path = r"C:\Users\umroot\PycharmProjects\DSIP\phd-committee-formOmar40187210.pdf"
 
     output_excel = r"C:\Users\umroot\PycharmProjects\DSIP\ExtractPdfData.xlsm"
     template_path = r"C:\Users\umroot\PycharmProjects\DSIP\Template.xlsm"
 
-    data = parse_pdf_data(pdf_path2)
+    data = parse_pdf_data(pdf_path)
     append_data_to_excel(data, output_excel, template_path)
