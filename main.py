@@ -1,7 +1,7 @@
 import pdfplumber
 import fitz  # PyMuPDF
 import pandas as pd
-
+from openpyxl import load_workbook
 
 def extract_main_text(pdf_path):
     """Extract text from the main content using pdfplumber."""
@@ -102,7 +102,7 @@ def parse_pdf_data(pdf_path):
     return combined_data
 
 
-def save_to_excel(data, output_excel):
+def save_to_excel(data, output_excel,template_path):
     """Save the extracted data into an Excel file using the specified template."""
     columns = [
         "Student Name", "Thesis Title", "Student ID", "Department",
@@ -110,15 +110,28 @@ def save_to_excel(data, output_excel):
         , "Coded on SIS", "Embargo Date", "Examining Committee decision","Thesis Ranking"
     ]
     df = pd.DataFrame([data], columns=columns)
-    df.to_excel(output_excel, index=False)
+
+    # Load the macro-enabled template workbook with macros preserved
+    wb = load_workbook(template_path, keep_vba=True)
+
+    # Create an ExcelWriter using the openpyxl engine with keep_vba=True
+    writer = pd.ExcelWriter(output_excel, engine='openpyxl', keep_vba=True)
+    writer.book = wb
+    # Write the DataFrame to a specified sheet (e.g., "Sheet1")
+    df.to_excel(writer, index=False, sheet_name='Sheet1')
+    writer.save()
+    writer.close()
     print("Data saved to:", output_excel)
+
+    # df.to_excel(output_excel, index=False)
+    # print("Data saved to:", output_excel)
 
 
 if __name__ == "__main__":
     # Update these paths as needed
-    pdf_path = "/Users/ornelabregu/Documents/ThesisSubmissionSystem/MA Committee Report - Youssef Maghrebi_40259660.pdf"
-    output_excel = "/Users/ornelabregu/Documents/ThesisSubmissionSystem/ExtractPdfData.xlsx"
-
+    pdf_path = r"C:\Users\umroot\Downloads\DSIP\MA Committee Report - Youssef Maghrebi_40259660.pdf"
+    output_excel = r"C:\Users\umroot\Downloads\DSIP\ExtractPdfData.xlsm"
+    template_path = r"C:\Users\umroot\Downloads\DSIP\Template.xlsm"
     data = parse_pdf_data(pdf_path)
     print("Extracted Data:", data)
-    save_to_excel(data, output_excel)
+    save_to_excel(data, output_excel,template_path)
