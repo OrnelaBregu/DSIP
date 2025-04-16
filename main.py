@@ -2,7 +2,8 @@ import pdfplumber
 import fitz  # PyMuPDF
 import pandas as pd
 from openpyxl import load_workbook
-
+import os
+import glob
 
 def extract_main_text(pdf_path):
     """Extract text from the main content using pdfplumber."""
@@ -127,18 +128,35 @@ def append_data_to_excel(data, output_excel, template_path):
     print("Data appended to", output_excel)
 
 
-if __name__ == "__main__":
-    # Process one PDF at a time.
-    # pdf_path = r"C:\Users\umroot\Downloads\DSIP\MA Committee Report - Youssef Maghrebi_40259660.pdf"
-    # pdf_path = r"C:\Users\umroot\Downloads\DSIP\MA Committee Report -Ornela_Bregu_26898580.pdf"
-    # output_excel = r"C:\Users\umroot\Downloads\DSIP\ExtractPdfData.xlsm"
-    # template_path = r"C:\Users\umroot\Downloads\DSIP\Template.xlsm"
-    pdf_path = r"C:\Users\umroot\PycharmProjects\DSIP\MA Committee Report -Ornela_Bregu_26898580.pdf"
-    pdf_path1 = r"C:\Users\umroot\PycharmProjects\DSIP\MA Committee Report - Youssef Maghrebi_40259660.pdf"
-    pdf_path2 = r"C:\Users\umroot\PycharmProjects\DSIP\phd-committee-formOmar40187210.pdf"
+# if __name__ == "__main__":
+#     # Process one PDF at a time.
+#     # pdf_path = r"C:\Users\umroot\Downloads\DSIP\MA Committee Report - Youssef Maghrebi_40259660.pdf"
+#     # pdf_path = r"C:\Users\umroot\Downloads\DSIP\MA Committee Report -Ornela_Bregu_26898580.pdf"
+#     # output_excel = r"C:\Users\umroot\Downloads\DSIP\ExtractPdfData.xlsm"
+#     # template_path = r"C:\Users\umroot\Downloads\DSIP\Template.xlsm"
+#     pdf_path = r"C:\Users\umroot\PycharmProjects\DSIP\MA Committee Report -Ornela_Bregu_26898580.pdf"
+#     pdf_path1 = r"C:\Users\umroot\PycharmProjects\DSIP\MA Committee Report - Youssef Maghrebi_40259660.pdf"
+#     pdf_path2 = r"C:\Users\umroot\PycharmProjects\DSIP\phd-committee-formOmar40187210.pdf"
+#
+#     output_excel = r"C:\Users\umroot\PycharmProjects\DSIP\ExtractPdfData.xlsm"
+#     template_path = r"C:\Users\umroot\PycharmProjects\DSIP\Template.xlsm"
+#
+#     data = parse_pdf_data(pdf_path)
+#     append_data_to_excel(data, output_excel, template_path)
 
+if __name__ == "__main__":
+     # Define the folder where your PDF files are stored
+    pdf_folder = r"C:\Users\umroot\PycharmProjects\DSIP"
+
+    # Define your output Excel file and the template path
     output_excel = r"C:\Users\umroot\PycharmProjects\DSIP\ExtractPdfData.xlsm"
     template_path = r"C:\Users\umroot\PycharmProjects\DSIP\Template.xlsm"
 
-    data = parse_pdf_data(pdf_path2)
-    append_data_to_excel(data, output_excel, template_path)
+    # Find all PDF files in the folder
+    pdf_files = glob.glob(os.path.join(pdf_folder, "*.pdf"))
+
+    # Process each PDF file one by one
+    for pdf_path in pdf_files:
+        print(f"Processing {pdf_path}...")
+        data = parse_pdf_data(pdf_path)
+        append_data_to_excel(data, output_excel, template_path)
