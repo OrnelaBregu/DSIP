@@ -160,3 +160,4 @@ if __name__ == "__main__":
         print(f"Processing {pdf_path}...")
         data = parse_pdf_data(pdf_path)
         append_data_to_excel(data, output_excel, template_path)
+#grfdb
