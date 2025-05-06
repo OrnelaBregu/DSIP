@@ -1,0 +1,38 @@
+[
+  {
+    "file": "phd-committee-formOmar40187210.pdf",
+    "errors": [
+      "Missing required fields: Student Name"
+    ]
+  },
+  {
+    "file": "Amira Jemaa_40259763.pdf",
+    "errors": [
+      "Missing required fields: Student Name, Student ID"
+    ]
+  },
+  {
+    "file": "40236679 Kota Naya.pdf",
+    "errors": [
+      "Missing required fields: Student Name, Student ID"
+    ]
+  },
+  {
+    "file": "Abigail Cole.pdf",
+    "errors": [
+      "Missing required fields: Student ID"
+    ]
+  },
+  {
+    "file": "40152265 Jin Yan Committee Report.pdf",
+    "errors": [
+      "Missing required fields: Student Name, Student ID"
+    ]
+  },
+  {
+    "file": "Adryanne Clermont-Paquette 27771843 ACCEPTMN O 16-12-22.pdf",
+    "errors": [
+      "Missing required fields: Student ID"
+    ]
+  }
+]
