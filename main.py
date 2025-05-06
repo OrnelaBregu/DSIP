@@ -57,18 +57,18 @@ def parse_pdf_data(pdf_path):
 
     # Default values based on your Excel template
     default_data = {
-        "Student Name": "Ornela",
-        "Thesis Title": "LLM",
-        "Student ID": "26898580",
-        "Department": "CIISE",
-        "TH05": "TH05",
-        "Thesis Defence Date": "MArch 20, 2025",
-        "Oral Defence": "Yes",
-        "Room": "309",
-        "Thesis Ranking": "Outstanding",
+        "Student Name": "",
+        "Thesis Title": "",
+        "Student ID": "",
+        "Department": "",
+        "TH05": "",
+        "Thesis Defence Date": "",
+        "Oral Defence": "",
+        "Room": "",
+        "Thesis Ranking": "",
         "Coded on SIS": "",
         "Embargo Date": "",
-        "Examining Committee decision": "Accepted"
+        "Examining Committee decision": ""
     }
 
     mapping = {
@@ -146,12 +146,11 @@ def append_data_to_excel(data, output_excel, template_path):
 
 if __name__ == "__main__":
      # Define the folder where your PDF files are stored
-    pdf_folder = r"C:\Users\umroot\PycharmProjects\DSIP"
+    pdf_folder = r"/Users/ornelabregu/PycharmProjects/DSIP/FORMS"
 
     # Define your output Excel file and the template path
-    output_excel = r"C:\Users\umroot\PycharmProjects\DSIP\ExtractPdfData.xlsm"
-    template_path = r"C:\Users\umroot\PycharmProjects\DSIP\Template.xlsm"
-
+    output_excel = r"/Users/ornelabregu/PycharmProjects/DSIP/ExtractPdfData.xlsm"
+    template_path = r"/Users/ornelabregu/PycharmProjects/DSIP/Template.xlsm"
     # Find all PDF files in the folder
     pdf_files = glob.glob(os.path.join(pdf_folder, "*.pdf"))
 
@@ -160,4 +159,9 @@ if __name__ == "__main__":
         print(f"Processing {pdf_path}...")
         data = parse_pdf_data(pdf_path)
         append_data_to_excel(data, output_excel, template_path)
-#grfdb
+
+#Plan
+#Add LLM preprocessing
+#Check for essential information like name and St.ID.
+#Add error message when pdf info is missing and cannot be processed
+#If file cannot be processed, create a folder to put all the info with those files.
